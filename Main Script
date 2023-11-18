@@ -1,0 +1,222 @@
+--Requested Script
+
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
+
+local Window = OrionLib:MakeWindow({Name = "Requested Script", HidePremium = false, SaveConfig = true, ConfigFolder = "OrionTest"})
+
+-- Values
+
+local Court1Enabled = false
+local Court2Enabled = false
+local Court3Enabled = false
+local Court4Enabled = false
+
+-- Functions
+function CamLock1()
+    local player = game.Players.LocalPlayer
+    local camera = game.Workspace.CurrentCamera
+    local RunService = game:GetService("RunService")
+
+    local jumpHeight = 50
+    local lookAtPosition = Vector3.new(291.0563049316406, 55.98678970336914, -871.8782348632812)
+
+    local humanoid = player.Character:FindFirstChildOfClass("Humanoid")
+    local handleJumpCameraConnection
+
+    -- Function to handle camera look while jumping
+    local function handleJumpCamera()
+        if humanoid:GetState() == Enum.HumanoidStateType.Jumping then
+            lastJumpTime = tick()
+        end
+
+        -- If the player jumped recently, look at the specified position
+        if tick() - lastJumpTime < 0.5 then  -- Adjust the duration as needed
+            local lookAtCFrame = CFrame.new(lookAtPosition)
+            camera.CFrame = CFrame.new(camera.CFrame.Position, lookAtPosition)
+        end
+    end
+
+    -- Connect the function to RunService's RenderStepped event
+    handleJumpCameraConnection = RunService.RenderStepped:Connect(handleJumpCamera)
+
+    -- Set the JumpHeight to the desired value
+    humanoid.JumpHeight = jumpHeight
+
+    return handleJumpCameraConnection
+end
+
+
+function CamLock2()
+    local player = game.Players.LocalPlayer
+    local camera = game.Workspace.CurrentCamera
+    local RunService = game:GetService("RunService")
+
+    local jumpHeight = 50
+    local lookAtPosition = Vector3.new(489.5746765136719, 56.398399353027344, -872.354736328125)
+
+    local humanoid = player.Character:FindFirstChildOfClass("Humanoid")
+    local handleJumpCameraConnection
+
+    -- Function to handle camera look while jumping
+    local function handleJumpCamera()
+        if humanoid:GetState() == Enum.HumanoidStateType.Jumping then
+            lastJumpTime = tick()
+        end
+
+        -- If the player jumped recently, look at the specified position
+        if tick() - lastJumpTime < 0.5 then  -- Adjust the duration as needed
+            local lookAtCFrame = CFrame.new(lookAtPosition)
+            camera.CFrame = CFrame.new(camera.CFrame.Position, lookAtPosition)
+        end
+    end
+
+    -- Connect the function to RunService's RenderStepped event
+    handleJumpCameraConnection = RunService.RenderStepped:Connect(handleJumpCamera)
+
+    -- Set the JumpHeight to the desired value
+    humanoid.JumpHeight = jumpHeight
+
+    return handleJumpCameraConnection
+end
+
+function CamLock3()
+    local player = game.Players.LocalPlayer
+    local camera = game.Workspace.CurrentCamera
+    local RunService = game:GetService("RunService")
+
+    local jumpHeight = 50
+    local lookAtPosition = Vector3.new(489.4605712890625, 57.07875061035156, -600.1173095703125)
+
+    local humanoid = player.Character:FindFirstChildOfClass("Humanoid")
+    local handleJumpCameraConnection
+
+    -- Function to handle camera look while jumping
+    local function handleJumpCamera()
+        if humanoid:GetState() == Enum.HumanoidStateType.Jumping then
+            lastJumpTime = tick()
+        end
+
+        -- If the player jumped recently, look at the specified position
+        if tick() - lastJumpTime < 0.5 then  -- Adjust the duration as needed
+            local lookAtCFrame = CFrame.new(lookAtPosition)
+            camera.CFrame = CFrame.new(camera.CFrame.Position, lookAtPosition)
+        end
+    end
+
+    -- Connect the function to RunService's RenderStepped event
+    handleJumpCameraConnection = RunService.RenderStepped:Connect(handleJumpCamera)
+
+    -- Set the JumpHeight to the desired value
+    humanoid.JumpHeight = jumpHeight
+
+    return handleJumpCameraConnection
+end
+
+function CamLock4()
+    local player = game.Players.LocalPlayer
+    local camera = game.Workspace.CurrentCamera
+    local RunService = game:GetService("RunService")
+
+    local jumpHeight = 50
+    local lookAtPosition = Vector3.new(290.873779296875, 57.07875061035156, -600.4367065429688)
+
+    local humanoid = player.Character:FindFirstChildOfClass("Humanoid")
+    local handleJumpCameraConnection
+
+    -- Function to handle camera look while jumping
+    local function handleJumpCamera()
+        if humanoid:GetState() == Enum.HumanoidStateType.Jumping then
+            lastJumpTime = tick()
+        end
+
+        -- If the player jumped recently, look at the specified position
+        if tick() - lastJumpTime < 0.5 then  -- Adjust the duration as needed
+            local lookAtCFrame = CFrame.new(lookAtPosition)
+            camera.CFrame = CFrame.new(camera.CFrame.Position, lookAtPosition)
+        end
+    end
+
+    -- Connect the function to RunService's RenderStepped event
+    handleJumpCameraConnection = RunService.RenderStepped:Connect(handleJumpCamera)
+
+    -- Set the JumpHeight to the desired value
+    humanoid.JumpHeight = jumpHeight
+
+    return handleJumpCameraConnection
+end
+
+local CamLockTab = Window:MakeTab({
+    Name = "CamLock Targets",
+    Icon = "rbxassetid://4483345998",
+    PremiumOnly = false
+})
+
+local Section = CamLockTab:AddSection({
+    Name = "Choose Courts"
+})
+
+CamLockTab:AddToggle({
+    Name = "Court 1 Camlock",
+    Default = false,
+    Callback = function(newValue)
+        Court1Enabled = newValue
+        if newValue then
+            handleJumpCameraConnection1 = CamLock1()
+        else
+            if handleJumpCameraConnection1 then
+                handleJumpCameraConnection1:Disconnect()
+                handleJumpCameraConnection1 = nil
+            end
+        end
+    end
+})
+
+CamLockTab:AddToggle({
+    Name = "Court 2 Camlock",
+    Default = false,
+    Callback = function(newValue)
+        Court2Enabled = newValue
+        if newValue then
+            handleJumpCameraConnection2 = CamLock2()
+        else
+            if handleJumpCameraConnection2 then
+                handleJumpCameraConnection2:Disconnect()
+                handleJumpCameraConnection2 = nil
+            end
+        end
+    end
+})
+
+CamLockTab:AddToggle({
+    Name = "Court 3 Camlock",
+    Default = false,
+    Callback = function(newValue)
+        Court3Enabled = newValue
+        if newValue then
+            handleJumpCameraConnection3 = CamLock3()
+        else
+            if handleJumpCameraConnection3 then
+                handleJumpCameraConnection3:Disconnect()
+                handleJumpCameraConnection3 = nil
+            end
+        end
+    end
+})
+
+CamLockTab:AddToggle({
+    Name = "Court 4 Camlock",
+    Default = false,
+    Callback = function(newValue)
+        Court4Enabled = newValue
+        if newValue then
+            handleJumpCameraConnection4 = CamLock4()
+        else
+            if handleJumpCameraConnection4 then
+                handleJumpCameraConnection4:Disconnect()
+                handleJumpCameraConnection4 = nil
+            end
+        end
+    end
+})
+
+OrionLib:Init()
